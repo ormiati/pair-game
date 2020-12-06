@@ -28,7 +28,7 @@ document.body.onload = startGame();
 function startGame(){
     openedCards = [];
     cards = shuffle(cards);
-    for (var i = 0; i < cards.length; i++){
+    for (let i = 0; i < cards.length; i++){
         deck.innerHTML = "";
         [].forEach.call(cards, function(item) {
             deck.appendChild(item);
@@ -40,7 +40,7 @@ function startGame(){
     second = 0;
     minute = 0; 
     var timer = document.querySelector(".timer");
-    timer.innerHTML = minute +" perc " + second +  " mp";
+    timer.innerHTML = `Idő: ${minute} perc ${second} mp`;
     clearInterval(interval);
 };
 
@@ -92,7 +92,7 @@ function disable(){
 function enable(){
     Array.prototype.filter.call(cards, function(card){
         card.classList.remove('disabled');
-        for(var i = 0; i < matchedCard.length; i++){
+        for(let i = 0; i < matchedCard.length; i++){
             matchedCard[i].classList.add("disabled");
         }
     });
@@ -101,11 +101,11 @@ function enable(){
 function moveCounter(){
     moves++;
     counter.innerHTML = moves;
-    if(moves == 0){
-        second = 0;
+    if(moves == 1){
+        second = 2;
         minute = 0; 
         startTimer();
-    }  
+    }   
 }
 
 var second = 0, minute = 0;
@@ -113,7 +113,7 @@ var timer = document.querySelector(".timer");
 var interval;
 function startTimer(){
     interval = setInterval(function(){
-        timer.innerHTML = minute + " perc " + second + "mp";
+        timer.innerHTML = `Idő: ${minute} perc ${second} mp`;
         second++;
         if(second == 60){
             minute++;
@@ -126,9 +126,6 @@ function endGame(){
     if (matchedCard.length == 10){
         clearInterval(interval);
         finalTime = timer.innerHTML;
-        setTimeout(function () {
-            window.location.reload(1);
-        }, 5000);
     };
 }
 
@@ -138,5 +135,3 @@ for (let i = 0; i < cards.length; i++){
     card.addEventListener("click", cardOpen);
     card.addEventListener("click", endGame);
 };
-
-
