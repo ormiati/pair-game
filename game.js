@@ -126,8 +126,11 @@ function endGame(){
     if (matchedCard.length == 10){
         clearInterval(interval);
         finalTime = timer.innerHTML;
+        setTimeout(function() {
+            document.location.load(true);
+        }, 5000);
     };
-}
+};
 
 for (let i = 0; i < cards.length; i++){
     card = cards[i];
